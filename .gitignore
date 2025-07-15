@@ -1,0 +1,5 @@
+# Compiled binaries
+main
+
+# Valgrind dumps
+vgcore*
