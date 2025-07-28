@@ -1,9 +1,9 @@
 #ifndef __HASH_TABLE__
 #define __HASH_TABLE__
 
-#define HTABLE_INITIAL_SIZE 8
-#define HTABLE_PRIME_A 11
-#define HTABLE_PRIME_B 17
+#define HTABLE_INITIAL_SIZE 64
+#define HTABLE_PRIME_A 97
+#define HTABLE_PRIME_B 127
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,7 +41,7 @@ char *htable_search(htable *htable, const char *key);
 // Deletes the element with the specified key from a hash table (ignores the deleted item later on)
 void htable_delete(htable *htable, const char *key);
 
-// Prints the non-null or deleted elements of a hash table
+// Prints the non-null and non-deleted elements of a hash table
 void htable_show(htable *htable);
 
 #endif // __HASH_TABLE__
