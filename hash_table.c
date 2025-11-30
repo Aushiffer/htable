@@ -1,4 +1,5 @@
 #include "hash_table.h"
+#include <stddef.h>
 
 // Macro for deletion
 static htable_item HTABLE_DELETED_ITEM = {NULL, NULL};
@@ -99,7 +100,7 @@ void htable_delete_htable(htable *htable) {
 
 static int htable_hash_function(const char *str, const int p, const int n_buckets) {
     long hash_num = 0;
-    const int str_len = strlen(str);
+    const size_t str_len = strlen(str);
 
     for (size_t i = 0; i < str_len; i++) {
         // Converts the string into some large number and fits it into the buckets
@@ -186,10 +187,12 @@ void htable_delete(htable *htable, const char *key) {
 
         index = htable_get_hash(key, htable->base_size, attempt);
         current = htable->items[index];
+
+        if (current == NULL)
+            htable->count--;
+
         attempt++;
     }
-
-    htable->count--;
 }
 
 void htable_show(htable *htable) {
